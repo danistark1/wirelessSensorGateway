@@ -23,7 +23,7 @@ A Weather Station project using RPI, a software defined radio module with acurit
 - >>sudo apt-get upgrade -y
 - >>sudo reboot
 
-#RTL433 & SoapySDR (build the software for rtl_433)
+# RTL433 & SoapySDR (build the software for rtl_433)
 
 - >>git clone https://github.com/merbanan/rtl_433.git
 - >>git clone https://github.com/pothosware/SoapySDR.git
@@ -35,20 +35,11 @@ A Weather Station project using RPI, a software defined radio module with acurit
 - >>sudo make install
 - >>SoapySDRUtil --info
 
-##Now that SoapySDR is built and running lets move to the rtl_433 for non-pi's and other Debian distro's you may need to add
-- >>sudo apt-get install libtool libusb-1.0.0-dev librtlsdr-dev rtl-sdr build-essential autoconf cmake pkg-config
-- >>cd rtl_433/
-- >>mkdir build
-- >>cd build
-- >>cmake ..
-- >>sudo make install
-- >>sudo ldconfig
-
-#Try reading from the Sensor
-rtl_433 -v
+# Reading from the Sensor
+>>rtl_433 -v
 You should see something like 
-Found 1 device(s)
-trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001
+>>Found 1 device(s)
+>>trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001
 
 # Setup Node-Red
 Node-red comes installed with Rpi, go ahead and update it.
@@ -71,16 +62,15 @@ Node-red comes installed with Rpi, go ahead and update it.
 >>sudo systemctl start mosquitto.service
 >>sudo systemctl status mosquitto.service
 
-Now lets get MQTT into the mix and send the rtl_433 output to as MQTT messages - -R 40(is the device type of the acurite sensor I am using)
+*Now send the rtl_433 output to as MQTT messages - -R 40(is the device type of the acurite sensor I am using)*
 
-rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
+- >>rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
 
-in another terminal run the belelow
+- in another terminal run the belelow
 
-mosquitto_sub -t home/acurite
+- >>mosquitto_sub -t home/acurite
 
-access your node-red from the top left menu under programming.
-Node-red uses port 1880
+*access your node-red from the top left menu under programming. Node-red uses port 1880*
 Import the file under node-red
 # Setup Grafana
 # Setup InfluxDB
