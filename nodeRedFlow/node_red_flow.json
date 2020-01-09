@@ -1,0 +1,372 @@
+[
+    {
+        "id": "177edab.47a8925",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "5c6e4a82.7a2cc4",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "459804d.22579fc",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "test",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": false,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": ""
+    },
+    {
+        "id": "30529ff.c188e6",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "Basement",
+        "name": "",
+        "usetls": false,
+        "tls": ""
+    },
+    {
+        "id": "fc486cc2.fff3a",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "sensors",
+        "name": "sensors",
+        "usetls": false,
+        "tls": ""
+    },
+    {
+        "id": "7e0a7b49.641954",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "localhost",
+        "port": "8086",
+        "protocol": "http",
+        "database": "test",
+        "name": ""
+    },
+    {
+        "id": "58d87d7d.82eb14",
+        "type": "mqtt-broker",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "verifyservercert": true,
+        "compatmode": true,
+        "keepalive": 15,
+        "cleansession": true,
+        "birthQos": "0",
+        "willQos": "0"
+    },
+    {
+        "id": "b5d2e00a.09a22",
+        "type": "influxdb",
+        "z": "",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "bedroom",
+        "name": "bedroom",
+        "usetls": false,
+        "tls": ""
+    },
+    {
+        "id": "59130ec1.8cdd2",
+        "type": "debug",
+        "z": "177edab.47a8925",
+        "name": "debug mqtt",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 290,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "2a7f14ab.d4dd9c",
+        "type": "influxdb out",
+        "z": "177edab.47a8925",
+        "influxdb": "fc486cc2.fff3a",
+        "name": "",
+        "measurement": "temperature",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 1100,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "9112be7e.c97ac",
+        "type": "mqtt in",
+        "z": "177edab.47a8925",
+        "name": "",
+        "topic": "home/acurite",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "459804d.22579fc",
+        "x": 110,
+        "y": 300,
+        "wires": [
+            [
+                "59130ec1.8cdd2",
+                "3cda243c.19211c"
+            ]
+        ]
+    },
+    {
+        "id": "1872feb9.a67371",
+        "type": "function",
+        "z": "177edab.47a8925",
+        "name": "read payload",
+        "func": "return {\n    payload: {\n        id: msg.payload.id,\n        temperature: msg.payload.temperature_C,\n        humidity: msg.payload.humidity\n    }\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 320,
+        "wires": [
+            [
+                "2a7f14ab.d4dd9c",
+                "10dd656.4e8a69b"
+            ]
+        ]
+    },
+    {
+        "id": "1c6c5520.7b071b",
+        "type": "debug",
+        "z": "177edab.47a8925",
+        "name": "read payload",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 730,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3cda243c.19211c",
+        "type": "switch",
+        "z": "177edab.47a8925",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "\"id\" : 3026",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 290,
+        "y": 280,
+        "wires": [
+            [
+                "62fb11d0.a7046"
+            ]
+        ]
+    },
+    {
+        "id": "62fb11d0.a7046",
+        "type": "json",
+        "z": "177edab.47a8925",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 410,
+        "y": 280,
+        "wires": [
+            [
+                "211a95fc.232f9a"
+            ]
+        ]
+    },
+    {
+        "id": "10dd656.4e8a69b",
+        "type": "debug",
+        "z": "177edab.47a8925",
+        "name": "humidity debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1060,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "2669e616.34c41a",
+        "type": "mqtt in",
+        "z": "177edab.47a8925",
+        "name": "",
+        "topic": "home/acurite",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "459804d.22579fc",
+        "x": 120,
+        "y": 480,
+        "wires": [
+            [
+                "b2752c79.35f5a"
+            ]
+        ]
+    },
+    {
+        "id": "b2752c79.35f5a",
+        "type": "switch",
+        "z": "177edab.47a8925",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "\"id\" : 6126",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 270,
+        "y": 500,
+        "wires": [
+            [
+                "cf6f9299.5e0c1"
+            ]
+        ]
+    },
+    {
+        "id": "cf6f9299.5e0c1",
+        "type": "json",
+        "z": "177edab.47a8925",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 390,
+        "y": 480,
+        "wires": [
+            [
+                "8b488d79.c2668"
+            ]
+        ]
+    },
+    {
+        "id": "cdb3ed61.85268",
+        "type": "function",
+        "z": "177edab.47a8925",
+        "name": "read payload",
+        "func": "return {\n    payload: {\n        id: msg.payload.id,\n        temperature: msg.payload.temperature_C,\n        humidity: msg.payload.humidity\n    }\n};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 690,
+        "y": 520,
+        "wires": [
+            [
+                "333bc573.52ad0a",
+                "8e1ebca6.9f65e"
+            ]
+        ]
+    },
+    {
+        "id": "333bc573.52ad0a",
+        "type": "influxdb out",
+        "z": "177edab.47a8925",
+        "influxdb": "b5d2e00a.09a22",
+        "name": "",
+        "measurement": "temperature",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 1100,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "8e1ebca6.9f65e",
+        "type": "debug",
+        "z": "177edab.47a8925",
+        "name": "bedroom debug",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1060,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "211a95fc.232f9a",
+        "type": "rbe",
+        "z": "177edab.47a8925",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 550,
+        "y": 300,
+        "wires": [
+            [
+                "1872feb9.a67371",
+                "1c6c5520.7b071b"
+            ]
+        ]
+    },
+    {
+        "id": "8b488d79.c2668",
+        "type": "rbe",
+        "z": "177edab.47a8925",
+        "name": "",
+        "func": "rbe",
+        "gap": "",
+        "start": "",
+        "inout": "out",
+        "property": "payload",
+        "x": 510,
+        "y": 480,
+        "wires": [
+            [
+                "cdb3ed61.85268"
+            ]
+        ]
+    }
+]
