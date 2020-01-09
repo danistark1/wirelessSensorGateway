@@ -60,7 +60,7 @@ Node-red comes installed with Rpi, go ahead and update it.
 >>npm outdated
 >>npm update
 
-Now that Node-RED is updated lets install and configure mosquitto aka MQTT
+*Now that Node-RED is updated lets install and configure mosquitto aka MQTT*
 
 # Setup MQTT
 
