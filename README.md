@@ -73,5 +73,9 @@ Node-red comes installed with Rpi, go ahead and update it.
 *access your node-red from the top left menu under programming. Node-red uses port 1880*
 Import the file under node-red
 # Setup Grafana
+TODO
 # Setup InfluxDB
+TODO
 # Setup Chronograf
+# Loading Node-Red flow
+TODO
