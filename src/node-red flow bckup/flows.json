@@ -7,31 +7,16 @@
         "info": ""
     },
     {
-        "id": "59130ec1.8cdd2",
-        "type": "debug",
-        "z": "177edab.47a8925",
-        "name": "debug mqtt",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 290,
-        "y": 360,
-        "wires": []
-    },
-    {
         "id": "2a7f14ab.d4dd9c",
         "type": "influxdb out",
         "z": "177edab.47a8925",
         "influxdb": "fc486cc2.fff3a",
-        "name": "",
+        "name": "Insert into Influx DB",
         "measurement": "temperature",
         "precision": "",
         "retentionPolicy": "",
-        "x": 1100,
-        "y": 340,
+        "x": 950,
+        "y": 240,
         "wires": []
     },
     {
@@ -39,15 +24,14 @@
         "type": "mqtt in",
         "z": "177edab.47a8925",
         "name": "",
-        "topic": "home/acurite",
+        "topic": "home/acurite Basement",
         "qos": "2",
         "datatype": "auto",
         "broker": "459804d.22579fc",
-        "x": 110,
-        "y": 300,
+        "x": 100,
+        "y": 240,
         "wires": [
             [
-                "59130ec1.8cdd2",
                 "3cda243c.19211c"
             ]
         ]
@@ -56,33 +40,18 @@
         "id": "1872feb9.a67371",
         "type": "function",
         "z": "177edab.47a8925",
-        "name": "read payload",
-        "func": "return {\n    payload: {\n        id: msg.payload.id,\n        temperature: msg.payload.temperature_C,\n        humidity: msg.payload.humidity\n    }\n};",
+        "name": "read payload Basement Sensor",
+        "func": "return {\n    payload: {\n        id: msg.payload.id,\n        temperature: msg.payload.temperature_C,\n        humidity: msg.payload.humidity,\n        room: 'basement'\n    }\n};",
         "outputs": 1,
         "noerr": 0,
-        "x": 690,
-        "y": 320,
+        "x": 710,
+        "y": 280,
         "wires": [
             [
                 "2a7f14ab.d4dd9c",
-                "10dd656.4e8a69b"
+                "6c593cc0.ac9284"
             ]
         ]
-    },
-    {
-        "id": "1c6c5520.7b071b",
-        "type": "debug",
-        "z": "177edab.47a8925",
-        "name": "read payload",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 730,
-        "y": 200,
-        "wires": []
     },
     {
         "id": "3cda243c.19211c",
@@ -101,7 +70,7 @@
         "checkall": "true",
         "repair": false,
         "outputs": 1,
-        "x": 290,
+        "x": 270,
         "y": 280,
         "wires": [
             [
@@ -117,7 +86,7 @@
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 410,
+        "x": 390,
         "y": 280,
         "wires": [
             [
@@ -126,31 +95,16 @@
         ]
     },
     {
-        "id": "10dd656.4e8a69b",
-        "type": "debug",
-        "z": "177edab.47a8925",
-        "name": "humidity debug",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 1060,
-        "y": 480,
-        "wires": []
-    },
-    {
         "id": "2669e616.34c41a",
         "type": "mqtt in",
         "z": "177edab.47a8925",
         "name": "",
-        "topic": "home/acurite",
+        "topic": "home/acurite Bedroom",
         "qos": "2",
         "datatype": "auto",
         "broker": "459804d.22579fc",
-        "x": 120,
-        "y": 480,
+        "x": 100,
+        "y": 380,
         "wires": [
             [
                 "b2752c79.35f5a"
@@ -175,7 +129,7 @@
         "repair": false,
         "outputs": 1,
         "x": 270,
-        "y": 500,
+        "y": 360,
         "wires": [
             [
                 "cf6f9299.5e0c1"
@@ -191,7 +145,7 @@
         "action": "",
         "pretty": false,
         "x": 390,
-        "y": 480,
+        "y": 360,
         "wires": [
             [
                 "8b488d79.c2668"
@@ -202,16 +156,16 @@
         "id": "cdb3ed61.85268",
         "type": "function",
         "z": "177edab.47a8925",
-        "name": "read payload",
+        "name": "read payload Bedroom Sensor",
         "func": "return {\n    payload: {\n        id: msg.payload.id,\n        temperature: msg.payload.temperature_C,\n        humidity: msg.payload.humidity\n    }\n};",
         "outputs": 1,
         "noerr": 0,
-        "x": 690,
-        "y": 520,
+        "x": 710,
+        "y": 360,
         "wires": [
             [
                 "333bc573.52ad0a",
-                "8e1ebca6.9f65e"
+                "625e3946.1d4ac8"
             ]
         ]
     },
@@ -220,27 +174,12 @@
         "type": "influxdb out",
         "z": "177edab.47a8925",
         "influxdb": "b5d2e00a.09a22",
-        "name": "",
+        "name": "Insert into Influx DB",
         "measurement": "temperature",
         "precision": "",
         "retentionPolicy": "",
-        "x": 1100,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "8e1ebca6.9f65e",
-        "type": "debug",
-        "z": "177edab.47a8925",
-        "name": "bedroom debug",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "x": 1060,
-        "y": 680,
+        "x": 950,
+        "y": 400,
         "wires": []
     },
     {
@@ -253,12 +192,11 @@
         "start": "",
         "inout": "out",
         "property": "payload",
-        "x": 550,
-        "y": 300,
+        "x": 510,
+        "y": 280,
         "wires": [
             [
-                "1872feb9.a67371",
-                "1c6c5520.7b071b"
+                "1872feb9.a67371"
             ]
         ]
     },
@@ -273,10 +211,54 @@
         "inout": "out",
         "property": "payload",
         "x": 510,
-        "y": 480,
+        "y": 360,
         "wires": [
             [
                 "cdb3ed61.85268"
+            ]
+        ]
+    },
+    {
+        "id": "bd4d828b.9a89e",
+        "type": "mysql",
+        "z": "177edab.47a8925",
+        "mydb": "fca5a5e8.18bbc8",
+        "name": "MYSQL DATABASE",
+        "x": 1390,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6c593cc0.ac9284",
+        "type": "function",
+        "z": "177edab.47a8925",
+        "name": "Prepare Insert Sensor 3026 Basement into MySQL db",
+        "func": "var date = new Date();\nmsg.topic=\"INSERT INTO sensor_data (room,temperature,humidity,station_id,insert_date_time) VALUES ('basement',?,?,?,?)\";\nmsg.payload=[msg.payload.temperature,msg.payload.humidity,msg.payload.id,date];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1060,
+        "y": 280,
+        "wires": [
+            [
+                "bd4d828b.9a89e"
+            ]
+        ]
+    },
+    {
+        "id": "625e3946.1d4ac8",
+        "type": "function",
+        "z": "177edab.47a8925",
+        "name": "Prepare Insert Senor 6126 Bedroom into MYSQL db",
+        "func": "var date = new Date();\nmsg.topic=\"INSERT INTO sensor_data (room,temperature,humidity,station_id,insert_date_time) VALUES ('bedroom',?,?,?,?)\";\nmsg.payload=[msg.payload.temperature,msg.payload.humidity,msg.payload.id,date];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1060,
+        "y": 360,
+        "wires": [
+            [
+                "bd4d828b.9a89e"
             ]
         ]
     },
@@ -325,5 +307,15 @@
         "name": "bedroom",
         "usetls": false,
         "tls": ""
+    },
+    {
+        "id": "fca5a5e8.18bbc8",
+        "type": "MySQLdatabase",
+        "z": "",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "weatherStation",
+        "tz": ""
     }
 ]
