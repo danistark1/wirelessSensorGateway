@@ -1,11 +1,9 @@
 # weatherStation
 A Weather Station project using RPI, a software defined radio module with acurite wireless sensors.
-
+![Grafana Station](https://github.com/danimajdalani/weatherStation/blob/master/img/station_grafana.png)
 # Tools used
 
 - Accurite06002M wireless temperature and humidity sensor(433MHZ).
-
-![Sensor](https://github.com/danimajdalani/weatherStation/blob/master/img/sensor.png)
 - NooElec Software defined radio(NTL SDR) to read the sensor's 433MHZ signal.
 ![SDR](https://github.com/danimajdalani/weatherStation/blob/master/img/sdr.png)
 - A raspberry-pi
