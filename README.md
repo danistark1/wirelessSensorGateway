@@ -87,6 +87,26 @@ msg.topic="INSERT INTO sensor_data (room,temperature,humidity,station_id,insert_
 msg.payload=[msg.payload.temperature,msg.payload.humidity,msg.payload.id,date];
 return msg;`
 
+**Humidity Query**
+
+`SELECT
+  insert_date_time AS "time",
+  humidity
+FROM sensor_data
+WHERE
+  station_id = 6126
+ORDER BY insert_date_time`
+
+**Temperature Query**
+
+`SELECT
+  insert_date_time AS "time",
+  temperature
+FROM sensor_data
+WHERE
+  station_id = 6126
+ORDER BY insert_date_time`
+
 # Loading Node-Red flow
 backup under /src/node-red flow
 To start node-red, from the command line, type node-red.
