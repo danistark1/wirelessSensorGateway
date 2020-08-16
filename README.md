@@ -106,6 +106,7 @@ FROM sensor_data
 WHERE
   station_id = 6126
 ORDER BY insert_date_time`
+![Grafana Sensor](https://github.com/danimajdalani/weatherStation/blob/master/img/grafana-sensor.png)
 
 # Loading Node-Red flow
 backup under /src/node-red flow
