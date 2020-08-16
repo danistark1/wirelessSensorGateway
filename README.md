@@ -17,56 +17,57 @@ A Weather Station project using RPI, a software defined radio module with acurit
 - Grafana
 
 # Update the pi
-- >>sudo apt-get update
-- >>sudo apt-get upgrade -y
-- >>sudo reboot
+- sudo apt-get update
+- sudo apt-get upgrade -y
+- sudo reboot
 
 # RTL433 & SoapySDR (build the software for rtl_433)
 
-- >>git clone https://github.com/merbanan/rtl_433.git
-- >>git clone https://github.com/pothosware/SoapySDR.git
-- >>cd SoapySDR/
-- >>git pull origin master
-- >>mkdir build
-- >>cd build
-- >>cmake ..
-- >>sudo make install
-- >>SoapySDRUtil --info
+- git clone https://github.com/merbanan/rtl_433.git
+- git clone https://github.com/pothosware/SoapySDR.git
+- cd SoapySDR/
+- git pull origin master
+- mkdir build
+- cd build
+- cmake ..
+- sudo make install
+- SoapySDRUtil --info
 
 # Reading from the Sensor
->>rtl_433 -v
+
+- rtl_433 -v
 You should see something like 
->>Found 1 device(s)
->>trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001
+`Found 1 device(s)
+trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 
 # Setup Node-Red
 Node-red comes installed with Rpi, go ahead and update it.
 
->>bash <(curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered)
->>cd ~/.node-red
->>npm rebuild
->>npm ls --depth=0
->>npm outdated
->>npm update
-
+`bash <(curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered)
+cd ~/.node-red
+npm rebuild
+npm ls --depth=0
+npm outdated
+npm update
+`
 *Now that Node-RED is updated lets install and configure mosquitto aka MQTT*
 
 # Setup MQTT
 
 `>>sudo apt-get update
->>sudo apt-get upgrade -y
->>sudo apt-get install mosquitto mosquitto-clients
->>sudo systemctl enable mosquitto.service
->>sudo systemctl start mosquitto.service
->>sudo systemctl status mosquitto.service`
+sudo apt-get upgrade -y
+sudo apt-get install mosquitto mosquitto-clients
+sudo systemctl enable mosquitto.service
+sudo systemctl start mosquitto.service
+sudo systemctl status mosquitto.service`
 
 *Now send the rtl_433 output to as MQTT messages - -R 40(is the device type of the acurite sensor I am using)*
 
-- >>rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
+- rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
 
 - in another terminal run the belelow
 
-- >>mosquitto_sub -t home/acurite
+- mosquitto_sub -t home/acurite
 
 
 *access your node-red from the top left menu under programming. Node-red uses port 1880*
