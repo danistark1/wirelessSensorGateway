@@ -114,6 +114,6 @@ To start node-red, from the command line, type node-red.
 You can then access node-red's dashbaord from http://localhost:1880
 
 # Starting the station
-node-red start
-rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
-mosquitto_sub -t home/acurite
+- node-red start
+- rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
+- mosquitto_sub -t home/acurite
