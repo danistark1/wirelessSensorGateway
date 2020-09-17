@@ -117,3 +117,22 @@ You can then access node-red's dashbaord from http://localhost:1880
 - node-red start
 - rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
 - mosquitto_sub -t home/acurite
+
+
+# Running RTL433 on boot
+
+sudo apt-get install supervisor
+sudo nano rtl433.sh 
+in the file above paste
+#!/bin/bash
+rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
+sudo chmod +x rtl433.sh
+sudo nano /etc/supervisor/supervisord.conf
+[program:rtl_433]
+command=/home/pi/rtl433.sh
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/long.err.log
+stdout_logfile=/var/log/long.out.log
+
+do the same for mosquitto service
