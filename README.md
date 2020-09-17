@@ -136,3 +136,17 @@ stderr_logfile=/var/log/long.err.log
 stdout_logfile=/var/log/long.out.log
 
 do the same for mosquitto service
+
+# Running node-red on boot
+
+sudo npm install -g pm2
+which node-red (to get current path)
+pm2 start /usr/bin/node-red --node-args="--max-old-space-size=128"
+
+to access the logs
+
+pm2 info node-red
+pm2 logs node-red
+to run on startup
+pm2 save
+pm2 startup
