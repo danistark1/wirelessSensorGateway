@@ -121,32 +121,37 @@ You can then access node-red's dashbaord from http://localhost:1880
 
 # Running RTL433 on boot
 
-sudo apt-get install supervisor
-sudo nano rtl433.sh 
+- sudo apt-get install supervisor
+- sudo nano rtl433.sh 
 in the file above paste
+
+```
 #!/bin/bash
 rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
-sudo chmod +x rtl433.sh
-sudo nano /etc/supervisor/supervisord.conf
+```
+- sudo chmod +x rtl433.sh
+- sudo nano /etc/supervisor/supervisord.conf
+
+```
 [program:rtl_433]
 command=/home/pi/rtl433.sh
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/long.err.log
 stdout_logfile=/var/log/long.out.log
-
+```
 do the same for mosquitto service
 
 # Running node-red on boot
 
-sudo npm install -g pm2
-which node-red (to get current path)
-pm2 start /usr/bin/node-red --node-args="--max-old-space-size=128"
+- sudo npm install -g pm2
+- which node-red (to get current path)
+- pm2 start /usr/bin/node-red --node-args="--max-old-space-size=128"
 
 to access the logs
 
-pm2 info node-red
-pm2 logs node-red
+- pm2 info node-red
+- pm2 logs node-red
 to run on startup
-pm2 save
-pm2 startup
+- pm2 save
+- pm2 startup
