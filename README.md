@@ -20,7 +20,7 @@ A Weather Station project using RPI, a software defined radio module with acurit
 - sudo apt-get upgrade -y
 - sudo reboot
 
-# RTL433 & SoapySDR (build the software for rtl_433)
+# Setup SoapySDR
 
 - git clone https://github.com/merbanan/rtl_433.git
 - git clone https://github.com/pothosware/SoapySDR.git
@@ -32,6 +32,14 @@ A Weather Station project using RPI, a software defined radio module with acurit
 - cmake ..
 - sudo make install
 - SoapySDRUtil --info
+# Setup RTL_433
+- sudo apt-get install libtool libusb-1.0.0-dev librtlsdr-dev rtl-sdr build-essential autoconf cmake pkg-config
+- cd rtl_433/
+- mkdir build
+- cd build
+- cmake ..
+- sudo make install
+- sudo ldconfig
 
 # Reading from the Sensor
 
@@ -41,16 +49,14 @@ You should see something like
 trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 
 # Setup Node-Red
-Node-red comes installed with Rpi, go ahead and update it.
 
-`bash <(curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered)
-- cd ~/.node-red
-- npm rebuild
-- npm ls --depth=0
-- npm outdated
-- npm update
+- sudo apt install build-essential (installs required npm modules)
+- bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
+- sudo systemctl start nodered (add node-red as a service to start on boot)
+- sudo systemctl status nodered (to check the service status)
+
 `
-*Now that Node-RED is updated lets install and configure mosquitto aka MQTT*
+*Now that Node-RED is installed lets install and configure mosquitto aka MQTT*
 
 # Setup MQTT
 
