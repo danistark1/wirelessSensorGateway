@@ -28,6 +28,7 @@ A Weather Station project using RPI, a software defined radio module with acurit
 - git pull origin master
 - mkdir build
 - cd build
+- sudo apt-get install cmake
 - cmake ..
 - sudo make install
 - SoapySDRUtil --info
@@ -73,6 +74,10 @@ sudo systemctl status mosquitto.service`
 Import the file under node-red
 
 # Setup Grafana
+- wget https://dl.grafana.com/oss/release/grafana_7.2.0_armhf.deb
+- sudo dpkg -i grafana_7.2.0_armhf.deb
+- sudo systemctl enable grafana-server (to start on boot)
+- sudo systemctl start grafana-server
 under /src/grapfana bckup
 You can access grafana http://localhost:3000
 
