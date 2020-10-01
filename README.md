@@ -44,22 +44,22 @@ trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 Node-red comes installed with Rpi, go ahead and update it.
 
 `bash <(curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered)
-cd ~/.node-red
-npm rebuild
-npm ls --depth=0
-npm outdated
-npm update
+- cd ~/.node-red
+- npm rebuild
+- npm ls --depth=0
+- npm outdated
+- npm update
 `
 *Now that Node-RED is updated lets install and configure mosquitto aka MQTT*
 
 # Setup MQTT
 
-`>>sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install mosquitto mosquitto-clients
-sudo systemctl enable mosquitto.service
-sudo systemctl start mosquitto.service
-sudo systemctl status mosquitto.service`
+- sudo apt-get update
+- sudo apt-get upgrade -y
+- sudo apt-get install mosquitto mosquitto-clients
+- sudo systemctl enable mosquitto.service
+- sudo systemctl start mosquitto.service
+- sudo systemctl status mosquitto.service`
 
 *Now send the rtl_433 output to as MQTT messages - -R 40(is the device type of the acurite sensor I am using)*
 
@@ -93,23 +93,26 @@ return msg;`
 
 **Humidity Query**
 
-`SELECT
+```sql
+SELECT
   insert_date_time AS "time",
   humidity
 FROM sensor_data
 WHERE
   station_id = 6126
 ORDER BY insert_date_time`
-
+```
 **Temperature Query**
 
-`SELECT
+```sql
+SELECT
   insert_date_time AS "time",
   temperature
 FROM sensor_data
 WHERE
   station_id = 6126
 ORDER BY insert_date_time`
+```
 ![Grafana Sensor](https://github.com/danimajdalani/weatherStation/blob/master/img/grafana-sensor.png)
 
 # Loading Node-Red flow
