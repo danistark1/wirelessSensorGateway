@@ -2,6 +2,7 @@
 
 A Weather Station project using RPI, a software defined radio module with acurite wireless sensors.
 ![Grafana Station](https://github.com/danimajdalani/weatherStation/blob/master/img/station_grafana.png)
+
 # Hardware
 
 - Accurite06002M wireless temperature and humidity sensor(433MHZ).
@@ -87,7 +88,7 @@ Import the file under node-red
 under /src/grapfana bckup
 You can access grafana http://localhost:3000
 
-# Setup MySQL DB
+# Setup MySQL DB (Not required if you are using the https://github.com/danistark1/weatherStationApiSymfony)
 From node-red, go to manage palette, add MySQL.
 
 Use this function to read data from payload before inserting to MySQL db.
@@ -96,6 +97,10 @@ Use this function to read data from payload before inserting to MySQL db.
 msg.topic="INSERT INTO sensor_data (room,temperature,humidity,station_id,insert_date_time) VALUES ('basement',?,?,?,?)";
 msg.payload=[msg.payload.temperature,msg.payload.humidity,msg.payload.id,date];
 return msg;`
+
+# Node Red Using the API
+
+To read/write to mySQL db, you can use https://github.com/danistark1/weatherStationApiSymfony which uses REST APIs to read/write to the db.
 
 **Humidity Query**
 
