@@ -3,6 +3,9 @@
 A Weather Station project using RPI, a software defined radio module with acurite wireless sensors.
 ![Grafana Station](https://github.com/danimajdalani/weatherStation/blob/master/img/station_grafana.png)
 
+Weather station uses REST APIs at https://github.com/danistark1/weatherStationApiSymfony
+
+
 # Hardware
 
 - Accurite06002M wireless temperature and humidity sensor(433MHZ).
