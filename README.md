@@ -1,7 +1,7 @@
 # weatherStation
 
 A Weather Station project using RPI, a software defined radio module with acurite wireless sensors.
-![Grafana Station](https://github.com/danimajdalani/weatherStation/blob/master/img/station_grafana.png)
+![Grafana Station](https://github.com/danistark1/weatherStation/blob/master/img/weatherStationMain.png)
 
 Weather station uses REST APIs at https://github.com/danistark1/weatherStationApiSymfony
 
