@@ -91,7 +91,10 @@ Import the file under node-red
 under /src/grapfana bckup
 You can access grafana http://localhost:3000
 
-# Setup MySQL DB (Not required if you are using the https://github.com/danistark1/weatherStationApiSymfony)
+# Setup MySQL DB
+
+***(Not required if you are using the https://github.com/danistark1/weatherStationApiSymfony)***
+
 From node-red, go to manage palette, add MySQL.
 
 Use this function to read data from payload before inserting to MySQL db.
@@ -130,11 +133,13 @@ ORDER BY insert_date_time`
 ![Grafana Sensor](https://github.com/danimajdalani/weatherStation/blob/master/img/grafana-sensor.png)
 
 # Loading Node-Red flow
-backup under /src/node-red flow
-To start node-red, from the command line, type node-red.
-You can then access node-red's dashbaord from http://localhost:1880
 
-# Starting the station
+- backup under /src/node-red flow
+- CLI: Start node-red  from the command line, type node-red
+- URL: You can then access node-red's dashbaord from http://localhost:1880
+
+# Starting the station (automated last step)
+
 - node-red start
 - rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
 - mosquitto_sub -t home/acurite
