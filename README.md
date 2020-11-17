@@ -8,13 +8,14 @@ Weather station uses REST APIs at https://github.com/danistark1/weatherStationAp
 
 # Hardware
 
-- Accurite06002M wireless temperature and humidity sensor(433MHZ).
-- NooElec Software defined radio(NTL SDR) to read the sensor's 433MHZ signal.
+- Accurite06002M wireless temperature and humidity sensor(433MHZ)
+- NooElec Software defined radio(NTL SDR) to read the sensor's 433MHZ signal
 ![SDR](https://github.com/danimajdalani/weatherStation/blob/master/img/sdr.png)
-- A raspberry-pi
+- A raspberry-pi running raspbian https://www.raspberrypi.org/software/
 
 # Software
-- Node-Red with MySQL palette added. (menu->manage palette).
+
+- Node-Red with MySQL palette added(Not required is using the API). (menu->manage palette).
 - MQTT	
 - rtl_433 Generic data receiver, mainly for the 433.92 MHz, 868 MHz (SRD), 315 MHz, and 915 MHz ISM bands	
 - Grafana
@@ -37,6 +38,7 @@ Weather station uses REST APIs at https://github.com/danistark1/weatherStationAp
 - sudo make install
 - SoapySDRUtil --info
 # Setup RTL_433
+
 - sudo apt-get install libtool libusb-1.0.0-dev librtlsdr-dev rtl-sdr build-essential autoconf cmake pkg-config
 - cd rtl_433/
 - mkdir build
@@ -49,6 +51,7 @@ Weather station uses REST APIs at https://github.com/danistark1/weatherStationAp
 
 - rtl_433 -v
 You should see something like 
+
 `Found 1 device(s)
 trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 
@@ -59,8 +62,8 @@ trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 - sudo systemctl start nodered (add node-red as a service to start on boot)
 - sudo systemctl status nodered (to check the service status)
 
-`
-*Now that Node-RED is installed lets install and configure mosquitto aka MQTT*
+
+*Now that Node-RED is installed, install and configure mosquitto aka MQTT*
 
 # Setup MQTT
 
@@ -84,26 +87,30 @@ trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 Import the file under node-red
 
 # Setup Grafana
+
 - wget https://dl.grafana.com/oss/release/grafana_7.2.0_armhf.deb
-- sudo dpkg -i grafana_7.2.0_armhf.deb
+- sudo dpkg -i grafana_7.2.0_armhf.deb (check latest version)
 - sudo systemctl enable grafana-server (to start on boot)
 - sudo systemctl start grafana-server
+
 under /src/grapfana bckup
+
 You can access grafana http://localhost:3000
 
 # Setup MySQL DB
 
-***(Not required if you are using the https://github.com/danistark1/weatherStationApiSymfony)***
+***(Not required if you are using weatherStation API at https://github.com/danistark1/weatherStationApiSymfony)***
 
 From node-red, go to manage palette, add MySQL.
 
 Use this function to read data from payload before inserting to MySQL db.
 
-`var date = new Date();
+```JS
+var date = new Date();
 msg.topic="INSERT INTO sensor_data (room,temperature,humidity,station_id,insert_date_time) VALUES ('basement',?,?,?,?)";
 msg.payload=[msg.payload.temperature,msg.payload.humidity,msg.payload.id,date];
-return msg;`
-
+return msg;
+```
 # Node Red Using the API
 
 To read/write to mySQL db, you can use https://github.com/danistark1/weatherStationApiSymfony which uses REST APIs to read/write to the db.
@@ -111,6 +118,7 @@ To read/write to mySQL db, you can use https://github.com/danistark1/weatherStat
 **Humidity Query**
 
 ```sql
+
 SELECT
   insert_date_time AS "time",
   humidity
@@ -119,9 +127,11 @@ WHERE
   station_id = 6126
 ORDER BY insert_date_time`
 ```
+
 **Temperature Query**
 
 ```sql
+
 SELECT
   insert_date_time AS "time",
   temperature
@@ -151,14 +161,14 @@ ORDER BY insert_date_time`
 - sudo nano rtl433.sh 
 in the file above paste
 
-```
+```JS
 #!/bin/bash
 rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
 ```
 - sudo chmod +x rtl433.sh
 - sudo nano /etc/supervisor/supervisord.conf
 
-```
+```JS
 [program:rtl_433]
 command=/home/pi/rtl433.sh
 autostart=true
