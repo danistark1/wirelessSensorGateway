@@ -1,3 +1,6 @@
+![Weather Station Logo](https://github.com/danistark1/weatherStation/blob/master/img/weatherLogo.png)
+
+
 ## Table of contents ##
 1. [Intro](#weatherstation "weatherStation")
 2. [Hardware](#hardware "Hardware")
@@ -20,6 +23,8 @@
 
 A Weather Station project using RPI, a software defined radio module with acurite wireless sensors.
 ![Grafana Station](https://github.com/danistark1/weatherStation/blob/master/img/weatherStationMain.png)
+
+
 
 Weather station uses REST APIs at https://github.com/danistark1/weatherStationApiSymfony
 
