@@ -1,3 +1,21 @@
+## Table of contents ##
+1. [Intro](#weatherstation "weatherStation")
+2. [Hardware](#hardware "Hardware")
+3. [Software](#software "Software")
+4. [Update the pi](#update-the-pi "Update the pi")
+5. [Setup SoapySDR](#setup-soapysdr "Setup SoapySDR")
+6. [Setup RTL_433](#setup-rtl_433 "Setup RTL_433")
+7. [Reading Sensor Data](#reading-sensor-data "Reading Sensor Data")
+8. [Setup Node-Red](#setup-node-red "Setup Node-Red")
+9. [Setup MQTT](#setup-mqtt "Setup MQTT")
+10. [Setup Grafana](#setup-grafana "Setup Grafana")
+11. [Setup MySQL DB](#setup-mysql-db "Setup MySQL DB")
+12. [Node Red Using REST APIs](#node-red-using-rest-apis "Node Red Using REST APIs")
+13. [Loading Node-Red flow](#loading-node-red-flow "Loading Node-Red flow")
+14. [Starting the station](#starting-the-station "Starting the station")
+15. [Running RTL433 on boot](#running-rtl433-on-boot "Running RTL433 on boot")
+16. [Running node-red on boot](#running-node-red-on-boot "Running node-red on boot")
+
 # weatherStation
 
 A Weather Station project using RPI, a software defined radio module with acurite wireless sensors.
@@ -21,6 +39,7 @@ Weather station uses REST APIs at https://github.com/danistark1/weatherStationAp
 - Grafana
 
 # Update the pi
+
 - sudo apt-get update
 - sudo apt-get upgrade -y
 - sudo reboot
@@ -37,6 +56,7 @@ Weather station uses REST APIs at https://github.com/danistark1/weatherStationAp
 - cmake ..
 - sudo make install
 - SoapySDRUtil --info
+
 # Setup RTL_433
 
 - sudo apt-get install libtool libusb-1.0.0-dev librtlsdr-dev rtl-sdr build-essential autoconf cmake pkg-config
@@ -47,7 +67,7 @@ Weather station uses REST APIs at https://github.com/danistark1/weatherStationAp
 - sudo make install
 - sudo ldconfig
 
-# Reading from the Sensor
+# Reading Sensor Data
 
 - rtl_433 -v
 You should see something like 
@@ -111,7 +131,7 @@ msg.topic="INSERT INTO sensor_data (room,temperature,humidity,station_id,insert_
 msg.payload=[msg.payload.temperature,msg.payload.humidity,msg.payload.id,date];
 return msg;
 ```
-# Node Red Using the API
+# Node Red Using REST APIs
 
 To read/write to mySQL db, you can use https://github.com/danistark1/weatherStationApiSymfony which uses REST APIs to read/write to the db.
 
@@ -148,7 +168,9 @@ ORDER BY insert_date_time`
 - CLI: Start node-red  from the command line, type node-red
 - URL: You can then access node-red's dashbaord from http://localhost:1880
 
-# Starting the station (automated last step)
+# Starting the station
+
+***(automated last step)***
 
 - node-red start
 - rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
