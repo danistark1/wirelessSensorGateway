@@ -140,6 +140,24 @@ return msg;
 
 To read/write to mySQL db, you can use https://github.com/danistark1/weatherStationApiSymfony which uses REST APIs to read/write to the db.
 
+**Sample Node Red Http Request Flow**
+
+![Node Red HTTP Request](https://github.com/danistark1/weatherStation/blob/master/img/nodeRedHttpRequest.png)
+
+**Payload**
+
+```JSON
+return {
+    payload: {
+        id: msg.payload.id,
+        temperature: msg.payload.temperature_C,
+        humidity: msg.payload.humidity,
+        room: 'basement',
+        station_id: 3026
+    }
+};
+```
+
 **Humidity Query**
 
 ```sql
