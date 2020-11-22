@@ -146,7 +146,7 @@ To read/write to mySQL db, you can use https://github.com/danistark1/weatherStat
 
 **Payload**
 
-```JSON
+```js
 return {
     payload: {
         id: msg.payload.id,
