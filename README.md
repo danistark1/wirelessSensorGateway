@@ -21,7 +21,7 @@
 
 # weatherStation
 
-A Weather Station project using RPI, a software defined radio module with acurite wireless sensors.
+A Weather Station project using RPI, a software defined radio module with acurite wireless sensors.(Other sensors can be used as long as they are supported by RTL_433)
 ![Grafana Station](https://github.com/danistark1/weatherStation/blob/master/img/weatherStationMain.png)
 
 
