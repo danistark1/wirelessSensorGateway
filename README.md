@@ -1,5 +1,6 @@
-![Weather Station Logo](https://github.com/danistark1/weatherStation/blob/master/img/weatherLogo.png)
-
+<p align="center">
+  <img src="https://github.com/danistark1/weatherStation/blob/master/img/weatherLogo.png" />
+</p>
 
 ## Table of contents ##
 1. [Intro](#weatherstation "weatherStation")
