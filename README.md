@@ -140,7 +140,7 @@ return msg;
 ```
 # Node Red Using REST APIs
 
-To read/write to mySQL db, you can use https://github.com/danistark1/weatherStationApiSymfony which uses REST APIs to read/write to the db.
+To read/write to mySQL db, you can use https://github.com/danistark1/weatherStationApiSymfony which uses REST APIs.
 
 **Sample Node Red Http Request Flow**
 
