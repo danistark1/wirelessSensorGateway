@@ -1,9 +1,13 @@
 
- <p align="center"><h1>🌧Weather Station Project🌧</h1></p> 
-
+ <p align="center">
+  <b>
+   🌧 Weather Station Project 🌧
+  </b>
+ </p>
 <p align="center">
   <img src="https://github.com/danistark1/weatherStation/blob/master/img/weatherLogo.png" />
 </p>
+ 
 
 ## Table of contents ##
 1. [Intro](#weatherstation "weatherStation")
