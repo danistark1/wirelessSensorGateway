@@ -8,6 +8,7 @@
   <img src="https://github.com/danistark1/weatherStation/blob/master/img/weatherLogo.png" />
 </p>
  
+rtl_433 -f 915M -f 433920000 -M notime -F json -R 142 -R 40 -H 80 -E hop | mosquitto_pub -t home/sensors -l
 
 ## Table of contents ##
 1. [Intro](#weatherstation "weatherStation")
