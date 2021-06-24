@@ -7,37 +7,36 @@
 <p align="center">
   <img src="https://github.com/danistark1/weatherStation/blob/master/img/weatherLogo.png" />
 </p>
- 
-rtl_433 -f 915M -f 433920000 -M notime -F json -R 142 -R 40 -H 80 -E hop | mosquitto_pub -t home/sensors -l
 
 ## Table of contents ##
-1. [Intro](#weatherstation "weatherStation")
-2. [Hardware](#hardware "Hardware")
-3. [Software](#software "Software")
-4. [Update the pi](#update-the-pi "Update the pi")
-5. [Setup SoapySDR](#setup-soapysdr "Setup SoapySDR")
-6. [Setup RTL_433](#setup-rtl_433 "Setup RTL_433")
-7. [Reading Sensor Data](#reading-sensor-data "Reading Sensor Data")
-8. [Setup Node-Red](#setup-node-red "Setup Node-Red")
-9. [Setup MQTT](#setup-mqtt "Setup MQTT")
-10. [Setup Grafana](#setup-grafana "Setup Grafana")
-11. [Setup MySQL DB](#setup-mysql-db "Setup MySQL DB")
-12. [Node Red Using REST APIs](#node-red-using-rest-apis "Node Red Using REST APIs")
-13. [Loading Node-Red flow](#loading-node-red-flow "Loading Node-Red flow")
-14. [Starting the station](#starting-the-station "Starting the station")
-15. [Running RTL433 on boot](#running-rtl433-on-boot "Running RTL433 on boot")
-16. [Running node-red on boot](#running-node-red-on-boot "Running node-red on boot")
+- [Intro](#weatherstation "weatherStation")
+- [Hardware](#hardware "Hardware")
+- [Software](#software "Software")
+- [Update the pi](#update-the-pi "Update the pi")
+- [Setup SoapySDR](#setup-soapysdr "Setup SoapySDR")
+- [Setup RTL_433](#setup-rtl_433 "Setup RTL_433")
+- [Reading Sensor Data](#reading-sensor-data "Reading Sensor Data")
+- [Setup Node-Red](#setup-node-red "Setup Node-Red")
+- [Setup MQTT](#setup-mqtt "Setup MQTT")
+- [Running Multiple Devices with Different Frequencies](#running-multiple-devices-with-different-frequencies "Running Multiple Devices with Different Frequencies")
+- [Setup Grafana](#setup-grafana "Setup Grafana")
+- [Setup MySQL DB](#setup-mysql-db "Setup MySQL DB")
+- [Node Red Using REST APIs](#node-red-using-rest-apis "Node Red Using REST APIs")
+- [Loading Node-Red flow](#loading-node-red-flow "Loading Node-Red flow")
+- [Starting the station](#starting-the-station "Starting the station")
+- [Running RTL433 on boot](#running-rtl433-on-boot "Running RTL433 on boot")
+- [Running node-red on boot](#running-node-red-on-boot "Running node-red on boot")
 
-# weatherStation
+# sensorGateway
 
-A Weather Station project using RPI, a software defined radio module with acurite wireless sensors.(Other sensors can be used as long as they are supported by RTL_433)
+A Sensor Gateway project using RPI, a software defined radio module with acurite wireless sensors.(Other sensors can be used as long as they are supported by RTL_433)
 ![Grafana Station](https://github.com/danistark1/weatherStation/blob/master/img/weatherStationMain.png)
 
 
 
-# Weather Station REST APIs
+# Sensor Gateway REST APIs
 
-Weather Station REST APIs project at https://github.com/danistark1/wirelessSensorGatewayAPI/
+Sensor Gateway REST APIs project at https://github.com/danistark1/wirelessSensorGatewayAPI
 
 
 # Hardware
@@ -108,7 +107,7 @@ trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 - sudo apt-get install mosquitto mosquitto-clients
 - sudo systemctl enable mosquitto.service
 - sudo systemctl start mosquitto.service
-- sudo systemctl status mosquitto.service`
+- sudo systemctl status mosquitto.service
 
 *Now send the rtl_433 output to as MQTT messages - -R 40(is the device type of the acurite sensor I am using)*
 
@@ -121,6 +120,18 @@ trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 
 *access your node-red from the top left menu under programming. Node-red uses port 1880*
 Import the file under node-red
+
+# Running Multiple Devices with Different Frequencies
+
+**Frreuqncy 915 MHZ + 433 MHZ, Devices 142 & 40 **
+
+Setting the hop to 80 seconds, to switch the frequency
+
+- rtl_433 -f 915M -f 433920000 -M notime -F json -R 142 -R 40 -H 80 -E hop | mosquitto_pub -t home/sensors -l
+
+**Multiples devices, same frequency**
+
+- rtl_433 -F json -f 433920000 -R 103 -R 40 | mosquitto_pub -t home/sensors -l
 
 # Setup Grafana
 
@@ -149,11 +160,11 @@ return msg;
 ```
 # Node Red Using REST APIs
 
-To read/write to mySQL db, you can use https://github.com/danistark1/weatherStationApiSymfony which uses REST APIs.
+To read/write to mySQL db, you can use https://github.com/danistark1/wirelessSensorGatewayAPI which uses REST APIs.
 
 **Sample Node Red Http Request Flow**
 
-![Node Red HTTP Request](https://github.com/danistark1/weatherStation/blob/master/img/nodeRedHttpRequest.png)
+![Node Red HTTP Request](https://github.com/danistark1/wirelessSensorGateway/blob/master/img/nodeRedHttpRequest.png)
 
 **Payload**
 
@@ -194,7 +205,7 @@ WHERE
   station_id = 6126
 ORDER BY insert_date_time`
 ```
-![Grafana Sensor](https://github.com/danimajdalani/weatherStation/blob/master/img/grafana-sensor.png)
+![Grafana Sensor](https://github.com/danistark1/wirelessSensorGateway/blob/master/img/grafana-sensor.png)
 
 # Loading Node-Red flow
 
