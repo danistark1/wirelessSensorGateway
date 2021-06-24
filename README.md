@@ -27,17 +27,15 @@
 - [Running RTL433 on boot](#running-rtl433-on-boot "Running RTL433 on boot")
 - [Running node-red on boot](#running-node-red-on-boot "Running node-red on boot")
 
-# sensorGateway
+
+# Sensor Gateway
 
 A Sensor Gateway project using RPI, a software defined radio module with acurite wireless sensors.(Other sensors can be used as long as they are supported by RTL_433)
 ![Grafana Station](https://github.com/danistark1/weatherStation/blob/master/img/weatherStationMain.png)
 
-
-
 # Sensor Gateway REST APIs
 
 Sensor Gateway REST APIs project at https://github.com/danistark1/wirelessSensorGatewayAPI
-
 
 # Hardware
 
