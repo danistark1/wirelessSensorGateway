@@ -8,7 +8,11 @@
   <img src="https://github.com/danistark1/weatherStation/blob/master/img/weatherLogo.png" />
 </p>
 
-## Table of contents ##
+## 📔 What is it? ##
+
+A gateway for recording wireless sensor readings in a MySQL database.
+
+## 💢 Table of contents ##
 - [Intro](#weatherstation "weatherStation")
 - [Hardware](#hardware "Hardware")
 - [Software](#software "Software")
