@@ -25,7 +25,7 @@ A gateway for recording wireless sensor readings in a MySQL database.
 - [Running Multiple Devices with Different Frequencies](#running-multiple-devices-with-different-frequencies "Running Multiple Devices with Different Frequencies")
 - [Setup Grafana](#setup-grafana "Setup Grafana")
 - [Setup MySQL DB](#setup-mysql-db "Setup MySQL DB")
-- [Node Red Using REST APIs](#node-red-using-rest-apis "Node Red Using REST APIs")
+- [Node Red Using APIs](#node-red-using-apis "Node Red Using APIs")
 - [Loading Node-Red flow](#loading-node-red-flow "Loading Node-Red flow")
 - [Starting the station](#starting-the-station "Starting the station")
 - [Running RTL433 on boot](#running-rtl433-on-boot "Running RTL433 on boot")
@@ -37,9 +37,9 @@ A gateway for recording wireless sensor readings in a MySQL database.
 A Sensor Gateway project using RPI, a software defined radio module with acurite wireless sensors.(Other sensors can be used as long as they are supported by RTL_433)
 ![Grafana Station](https://github.com/danistark1/weatherStation/blob/master/img/weatherStationMain.png)
 
-# Sensor Gateway REST APIs
+# Sensor Gateway APIs
 
-Sensor Gateway REST APIs project at https://github.com/danistark1/wirelessSensorGatewayAPI
+Sensor Gateway APIs project at https://github.com/danistark1/wirelessSensorGatewayAPI
 
 # Hardware
 
@@ -160,9 +160,9 @@ msg.topic="INSERT INTO sensor_data (room,temperature,humidity,station_id,insert_
 msg.payload=[msg.payload.temperature,msg.payload.humidity,msg.payload.id,date];
 return msg;
 ```
-# Node Red Using REST APIs
+# Node Red Using APIs
 
-To read/write to mySQL db, you can use https://github.com/danistark1/wirelessSensorGatewayAPI which uses REST APIs.
+To read/write to mySQL db, you can use https://github.com/danistark1/wirelessSensorGatewayAPI which uses APIs.
 
 **Sample Node Red Http Request Flow**
 
