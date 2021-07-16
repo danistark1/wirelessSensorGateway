@@ -16,7 +16,7 @@ A gateway for recording wireless sensor readings in a MySQL database.
 - [Intro](#weatherstation "weatherStation")
 - [Hardware](#hardware "Hardware")
 - [Software](#software "Software")
-- [Update the pi](#update-the-pi "Update the pi")
+- [RasPi Setup](#raspi-setup "Raspi Setup")
 - [Setup SoapySDR](#setup-soapysdr "Setup SoapySDR")
 - [Setup RTL_433](#setup-rtl_433 "Setup RTL_433")
 - [Reading Sensor Data](#reading-sensor-data "Reading Sensor Data")
@@ -55,7 +55,7 @@ Sensor Gateway APIs project at https://github.com/danistark1/wirelessSensorGatew
 - rtl_433 Generic data receiver, mainly for the 433.92 MHz, 868 MHz (SRD), 315 MHz, and 915 MHz ISM bands	
 - Grafana
 
-# Update the pi
+# Raspi Setup
 
 - sudo apt-get update
 - sudo apt-get upgrade -y
