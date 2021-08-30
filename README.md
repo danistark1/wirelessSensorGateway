@@ -148,7 +148,7 @@ You can access grafana http://localhost:3000
 
 # Setup MySQL DB
 
-***(Not required if you are using weatherStation API at https://github.com/danistark1/weatherStationApiSymfony)***
+***(Not required if you are using SensorGateway API at https://github.com/danistark1/weatherStationApiSymfony)***
 
 From node-red, go to manage palette, add MySQL.
 
