@@ -10,7 +10,7 @@
 
 ## 📔 What is it? ##
 
-A gateway for recording wireless sensor readings in a MySQL database using a software defined radio (SDR), MQTT & rtl_433 Generic data receiver.
+A gateway for recording wireless sensor readings using a raspberry pi in a MySQL database using a software defined radio (SDR), MQTT, acurite wireless temp/humidity sensors(other sensors can be used, check rtl_433 repo for support/config) & rtl_433 Generic data receiver.
 
 ## 💢 Table of contents ##
 - [Intro](#weatherstation "weatherStation")
@@ -31,10 +31,6 @@ A gateway for recording wireless sensor readings in a MySQL database using a sof
 - [Running RTL433 on boot](#running-rtl433-on-boot "Running RTL433 on boot")
 - [Running node-red on boot](#running-node-red-on-boot "Running node-red on boot")
 
-
-# Sensor Gateway
-
-A Sensor Gateway project using RPI, a software defined radio module with acurite wireless sensors.(Other sensors can be used as long as they are supported by RTL_433)
 ![Grafana Station](https://github.com/danistark1/weatherStation/blob/master/img/weatherStationMain.png)
 
 # Sensor Gateway APIs
