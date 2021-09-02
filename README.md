@@ -10,7 +10,7 @@
 
 ## 📔 What is it? ##
 
-A gateway for recording wireless sensor readings in a MySQL database.
+A gateway for recording wireless sensor readings in a MySQL database using a software defined radio (SDR).
 
 ## 💢 Table of contents ##
 - [Intro](#weatherstation "weatherStation")
