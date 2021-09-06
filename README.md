@@ -233,15 +233,23 @@ rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
 - sudo chmod +x rtl433.sh
 - sudo nano /etc/supervisor/conf.d/rtl_433.conf
 
-```JS
-[program:rtl_433]
-command=/home/pi/rtl433.sh
+```yaml
+[program:rtl_433service]
+command=/home/pi/Desktop/weatherStationFiles/rtl_433service.sh
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/long.err.log
-stdout_logfile=/var/log/long.out.log
+stdout_logfile=/var/log/long.out
+
+
+[program:rtl_433mosquito]
+command=/home/pi/Desktop/weatherStationFiles/rtl_433mosquito.sh
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/long.err.log
+stdout_logfile=/var/log/long.out
 ```
-do the same for mosquitto service
+do the same for mosquitto servi
 
 **Troublshooting supervisor**
 
