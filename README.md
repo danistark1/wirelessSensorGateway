@@ -231,7 +231,7 @@ in the file above paste
 rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
 ```
 - sudo chmod +x rtl433.sh
-- sudo nano /etc/supervisor/supervisord.conf
+- sudo nano /etc/supervisor/conf.d/rtl_433.conf
 
 ```JS
 [program:rtl_433]
