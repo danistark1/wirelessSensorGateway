@@ -243,6 +243,11 @@ stdout_logfile=/var/log/long.out.log
 ```
 do the same for mosquitto service
 
+**Troublshooting supervisor**
+
+- sudo supervisorctl (check the running services)
+- sudo service supervisor restart (or reload)
+
 # Running node-red on boot
 
 - sudo npm install -g pm2
