@@ -33,9 +33,12 @@ A gateway for recording wireless sensor readings using a raspberry pi in a MySQL
 
 ![Grafana Station](https://github.com/danistark1/weatherStation/blob/master/img/weatherStationMain.png)
 
-# Sensor Gateway APIs
+# Sensor Gateway APIs (Required)
 
-Sensor Gateway APIs project at https://github.com/danistark1/wirelessSensorGatewayAPI
+**Frameworks**
+
+- Symfony https://github.com/danistark1/sensorGatewayAPISymf
+- Laravel v8.60.0 (Latest, in-progress) https://github.com/danistark1/sensorGatewayApiLrv
 
 # Hardware
 
