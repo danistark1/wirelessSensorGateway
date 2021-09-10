@@ -38,7 +38,7 @@ A gateway for recording wireless sensor readings using a raspberry pi in a MySQL
 **Frameworks**
 
 - Symfony https://github.com/danistark1/sensorGatewayAPISymf
-- Laravel v8.60.0 (Latest, in-progress) https://github.com/danistark1/sensorGatewayApiLrv
+- Laravel v8.60.0 (Latest, in-progress) https://github.com/danistark1/sensorGatewayAPILrv
 
 # Hardware
 
