@@ -14,7 +14,7 @@ A gateway for recording wireless sensor readings using a raspberry pi in a MySQL
 
 ## 💢 Table of contents ##
 - [Intro](#weatherstation "weatherStation")
-- [Hardware](#hardware "Hardware")
+- [Devices](#devices "Devices")
 - [Software](#software "Software")
 - [RasPi Setup](#raspi-setup "Raspi Setup")
 - [Setup SoapySDR](#setup-soapysdr "Setup SoapySDR")
@@ -40,7 +40,7 @@ A gateway for recording wireless sensor readings using a raspberry pi in a MySQL
 - Symfony https://github.com/danistark1/sensorGatewayAPISymf
 - Laravel v8.60.0 (Latest, in-progress) https://github.com/danistark1/sensorGatewayAPILrv
 
-# Hardware
+# Devices
 
 - Accurite06002M wireless temperature and humidity sensor(433MHZ)
 - NooElec Software defined radio(NTL SDR) to read the sensor's 433MHZ signal
