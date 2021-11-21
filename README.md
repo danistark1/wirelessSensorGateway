@@ -13,18 +13,17 @@
 A gateway for recording wireless sensor readings using a raspberry pi in a MySQL database using a software defined radio (SDR), MQTT, acurite wireless temp/humidity sensors(other sensors can be used, check rtl_433 repo for support/config) & rtl_433 Generic data receiver.
 
 ## 💢 Table of contents ##
-- [Intro](#weatherstation "weatherStation")
 - [Devices](#devices "Devices")
 - [Software](#software "Software")
 - [RasPi Setup](#raspi-setup "Raspi Setup")
-- [Setup SoapySDR](#setup-soapysdr "Setup SoapySDR")
-- [Setup RTL_433](#setup-rtl_433 "Setup RTL_433")
+- [SoapySDR Setup ](#soapysdr-setup "SoapySDR Setup")
+- [RTL_433 Setup](#rtl_433-setup "RTL_433 Setup")
 - [Reading Sensor Data](#reading-sensor-data "Reading Sensor Data")
-- [Setup Node-Red](#setup-node-red "Setup Node-Red")
-- [Setup MQTT](#setup-mqtt "Setup MQTT")
+- [Node-Red Setup ](#node-red-setup "Node-Red Setup")
+- [MQTT Setup](#mqtt-setup "MQTT Setup")
 - [Running Multiple Devices with Different Frequencies](#running-multiple-devices-with-different-frequencies "Running Multiple Devices with Different Frequencies")
-- [Setup Grafana](#setup-grafana "Setup Grafana")
-- [Setup MySQL DB](#setup-mysql-db "Setup MySQL DB")
+- [Grafana Setup](#grafana-setup "Grafana Setup")
+- [MySQL DB Setup](#mysql-db-setup "MySQL DB Setup")
 - [Node Red Using APIs](#node-red-using-apis "Node Red Using APIs")
 - [Loading Node-Red flow](#loading-node-red-flow "Loading Node-Red flow")
 - [Starting the station](#starting-the-station "Starting the station")
@@ -60,7 +59,7 @@ A gateway for recording wireless sensor readings using a raspberry pi in a MySQL
 - sudo apt-get upgrade -y
 - sudo reboot
 
-# Setup SoapySDR
+# SoapySDR Setup
 
 - git clone https://github.com/merbanan/rtl_433.git
 - git clone https://github.com/pothosware/SoapySDR.git
@@ -73,7 +72,7 @@ A gateway for recording wireless sensor readings using a raspberry pi in a MySQL
 - sudo make install
 - SoapySDRUtil --info
 
-# Setup RTL_433
+# RTL_433 Setup
 
 - sudo apt-get install libtool libusb-1.0.0-dev librtlsdr-dev rtl-sdr build-essential autoconf cmake pkg-config
 - cd rtl_433/
@@ -91,7 +90,7 @@ You should see something like
 `Found 1 device(s)
 trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 
-# Setup Node-Red
+# Node-Red Setup
 
 - sudo apt install build-essential (installs required npm modules)
 - bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered)
@@ -101,7 +100,7 @@ trying device  0:  Realtek, RTL2838UHIDIR, SN: 00000001`
 
 *Now that Node-RED is installed, install and configure mosquitto aka MQTT*
 
-# Setup MQTT
+# MQTT Setup
 
 - sudo apt-get update
 - sudo apt-get upgrade -y
@@ -134,7 +133,7 @@ Setting the hop to 80 seconds, to switch the frequency
 
 - rtl_433 -F json -f 433920000 -R 103 -R 40 | mosquitto_pub -t home/sensors -l
 
-# Setup Grafana
+# Grafana Setup
 
 - wget https://dl.grafana.com/oss/release/grafana_7.2.0_armhf.deb
 - sudo dpkg -i grafana_7.2.0_armhf.deb (check latest version)
@@ -145,7 +144,7 @@ under /src/grapfana bckup
 
 You can access grafana http://localhost:3000
 
-# Setup MySQL DB
+# MySQL DB Setup
 
 ***(Not required if you are using SensorGateway API at https://github.com/danistark1/weatherStationApiSymfony)***
 
