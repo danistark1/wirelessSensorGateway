@@ -237,11 +237,13 @@ rtl_433 -M notime -F json -R 40 | mosquitto_pub -t home/acurite -l
 
 ```yaml
 [program:rtl_433service]
-command=/home/pi/Desktop/weatherStationFiles/rtl_433service.sh
+command=/home/pi/Desktop/weatherStationFiles/rtl_433service.sh  --sleep=10 --tries=3 --daemon
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/long.err.log
 stdout_logfile=/var/log/long.out
+startsecs=0
+exitcodes=0
 
 
 [program:rtl_433mosquito]
